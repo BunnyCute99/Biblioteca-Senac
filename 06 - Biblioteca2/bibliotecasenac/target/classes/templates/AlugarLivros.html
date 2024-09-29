@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Biblioteca Senac</title>
+</head>
+<body>
+
+    <div class="corpo">
+
+        <h1>Alugar Livros</h1>
+
+        <p>
+            <a th:href="@{'/home'}">Home ></a>
+            <a th:href="@{'/aluno/entrar'}">Aluno Entrar ></a>
+            <a th:href="@{'/home¬aluno'}">Aluno ></a>
+            <a th:href="@{'/aluno/alugar'}">Alugar Livros ></a>
+
+        </p>
+    
+        <p th:text="'Aluno: '+ ${aluno.nome} + ' Ativo'"></p>
+        <p th:text="'Você tem: '+${aluno.numeroLivros}+'/5 livros Alugados'"></p>
+        <p th:if="${erro}">Número de Livros esgotado ou Livro Já está Alugado</p>
+
+        <h3>Livros Alugados</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>Código</td>
+                    <td>Título</td>
+                    <td>Emprestado</td>
+                    <td>Devolver</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="l: ${livrosAlugados}">
+                    <td data-th-text="${l.codigoLivro}"></td>
+                    <td data-th-text="${l.nomeLivro}"></td>
+                    <td data-th-text="${l.emprestado}"></td>
+                    <td><a th:href="@{'/livro/devolverLivro/'+${l.codigoLivro}}">Devolver</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Livros para Alugar</h3>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>Código</td>
+                    <td>Título</td>
+                    <td>Emprestado</td>
+                    <td>Alugar</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="livro: ${livros}">
+                    <td data-th-text="${livro.codigoLivro}"></td>
+                    <td data-th-text="${livro.nomeLivro}"></td>
+                    <td data-th-text="${livro.emprestado}"></td>
+                    <td><a th:href="@{'/livro/alugarAluno/'+${livro.codigoLivro}}">Alugar</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    
+</body>
+</html>

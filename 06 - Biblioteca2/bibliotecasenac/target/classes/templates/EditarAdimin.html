@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Biblioteca Senac</title>
+</head>
+<body>
+
+    <div class="corpo">
+
+        <h1>Página de Edição de Admim</h1>
+
+        <p>
+            <a th:href="@{'/home'}">Home ></a>
+            <a th:href="@{'/home¬biblioteca'}">Biblioteca ></a>
+            <a th:href="@{'/aluno/registrar'}">Registrar ></a>
+            
+        </p>
+
+        <div th:if="${erro}"> <br>
+            <p th:text="${erro}"></p>
+        </div>
+
+        <form action="/admim/editar" method="post">
+
+            <input type="hidden" name="id" th:value="${admim?.id}">
+
+            <label>Nome</label><br>
+            <input type="text" name="nome" th:value="${admim?.nome}" required><br><br>
+
+            <label>Usuário</label><br>
+            <input type="text" name="usuario" th:value="${admim?.usuario}" required><br><br>
+
+            <label>Senha</label><br>
+            <input type="password" name="senha" required><br><br>
+
+            <label>Repitir a Senha</label><br>
+            <input type="password" name="rsenha" required><br><br>
+
+            <button type="submit">Salvar</button>
+        </form><br>
+
+    </div>
+    
+</body>
+</html>
