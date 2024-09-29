@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Biblioteca Senac</title>
+</head>
+<body>
+
+    <div class="corpo">
+
+        <h1>Entrar Admin</h1>
+        <p>
+            <a th:href="@{'/home'}">Home ></a>
+            <a th:href="@{'/admim/entrar'}">Entrar Admin</a>
+        </p>
+
+        <div th:if="${erro}">
+            <br>
+            <p th:text="${erro}"></p>
+            <br>
+        </div>
+
+        <form action="/admim/entrar" method="post">
+        
+
+            <label>Usuário</label><br>
+            <input type="text" name="usuario" required><br><br>
+
+            <label>Senha</label><br>
+            <input type="password" name="senha" required><br><br>
+    
+            <button type="submit">Entrar</button>
+    
+        </form>
+    
+
+
+    </div>
+
+</body>
+</html>

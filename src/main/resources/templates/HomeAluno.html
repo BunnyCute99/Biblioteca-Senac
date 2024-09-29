@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Biblioteca SENAC</title>
+</head>
+<body>
+
+    <div class="logo">
+        <img src="/Senac_logo.png">
+    </div>
+    
+    <div class="corpo">
+        <h1 th:text="'Página Inicial - Aluno: '+${aluno.nome}"> </h1>
+        <p>
+            <a th:href="@{'/home'}">Home ></a>
+            <a th:href="@{'/aluno/entrar'}">Aluno Entrar ></a>
+            <a th:href="@{'/home¬aluno'}">Aluno ></a>
+        </p>
+  
+        <ul>
+            <li><a th:href="@{'/aluno/alugar'}">Alugar Livros</a></li>
+        </ul>
+    </div>
+    
+
+</body>
+</html>
