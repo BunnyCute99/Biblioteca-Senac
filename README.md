@@ -10,6 +10,9 @@ O projeto utiliza como principal linguagem Java com ferramentas como Spring Boot
 # Equipe
 
 Bruno Passareli Costa -> BunnyCute99
+
 Douglas Vieira Matos
+
 Félix do Nascimento de Oliveira
+
 Fernando Passareli Costa
