@@ -13,15 +13,13 @@
         <h1>Página de Edição de Admim</h1>
 
         <p>
-            <p>
-                <a th:href="@{'/home'}">Home ></a>
-                <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
-                <a th:href="@{'/admim/home'}">Admin ></a>
-                <a th:href="@{'/admim/listar'}">Listar Administradores ></a>
-                <a th:href="@{'/admim/editar/'+${admim.id}}">Editar</a>
-            </p>
-            
+            <a th:href="@{'/home'}">Home ></a>
+            <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
+            <a th:href="@{'/admim/home'}">Admin ></a>
+            <a th:href="@{'/admim/listar'}">Listar Administradores ></a>
+            <a th:href="@{'/admim/editar/'+${admim.id}}">Editar</a>
         </p>
+
 
         <div th:if="${erro}"> <br>
             <p th:text="${erro}"></p>
