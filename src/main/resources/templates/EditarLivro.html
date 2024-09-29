@@ -12,8 +12,10 @@
 
         <p>
             <a th:href="@{'/home'}">Home ></a>
-            <a th:href="@{'/home¬biblioteca'}">Biblioteca ></a>
-            <a th:href="@{'/livro/emprestados'}">Livros Alugados ></a>
+            <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
+            <a th:href="@{'/admim/home'}">Admin ></a>
+            <a th:href="@{'/livro/estoque'}">Estoque de Livros ></a>
+            <a th:href="@{'/livro/editar/'+${livro.codigoLivro}}">Editar</a>
         </p>
 
         <form action="/livro/resgistro" method="post">
