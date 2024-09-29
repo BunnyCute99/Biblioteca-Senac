@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Biblioteca Senac</title>
+</head>
+<body>
+    
+
+    <div class="corpo">
+
+        <h1>Lista de Alunos Registrados</h1>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Quant. de Livros</td>
+                    <td>Exluir</td>
+                    <td>Editar</td>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr data-th-each="aluno: ${alunos}">
+                    <td data-th-text="${aluno.id}"></td>
+                    <td data-th-text="${aluno.nome}"></td>
+                    <td data-th-text="${aluno.numeroLivros}"></td>
+                    <td>*</td>
+                    <td>*</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    
+</body>
+</body>
+</html>
