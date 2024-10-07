@@ -25,8 +25,6 @@
                     <td>Título</td>
                     <td>Data</td>
                     <td>Emprestado</td>
-                    <td>Alugar</td>
-                    <td>Devolver</td>
                     <td>Exluir</td>
                     <td>Editar</td>
     
@@ -39,8 +37,6 @@
                     <td data-th-text="${livro.nomeLivro}"></td>
                     <td data-th-text="${livro.dataLivro}"></td>
                     <td data-th-text="${livro.emprestado}"></td>
-                    <td><a th:href="@{'/livro/alugar/'+${livro.codigoLivro}}">Alugar</a></td>
-                    <td><a th:href="@{'/livro/devolver/'+${livro.codigoLivro}}">Devolver</a></td>
                     <td><a th:href="@{'/livro/exluir/'+${livro.codigoLivro}}">Excluir</a></td>
                     <td><a th:href="@{'/livro/editar/'+${livro.codigoLivro}}">Editar</a></td>
                 </tr>
