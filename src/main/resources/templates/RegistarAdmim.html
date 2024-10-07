@@ -23,6 +23,9 @@
         <div th:if="${erro}"> <br>
             <p th:text="${erro}"></p>
         </div>
+        <div th:if="${certo}"> <br>
+            <p th:text="${certo}"></p>
+        </div>
 
         <form action="/admim/registrar" method="post">
 

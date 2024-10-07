@@ -17,6 +17,13 @@
             <a th:href="@{'/livro/resgistro'}">Registrar Livro</a>
         </p>
 
+        <div th:if="${erro}">
+            <p th:text="${erro}"></p>
+        </div>
+        <div th:if="${certo}">
+            <p th:text="${certo}"></p>
+        </div>
+
         <form action="/livro/resgistro" method="post">
     
             <label>Título do Livro</label>
