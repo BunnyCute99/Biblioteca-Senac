@@ -13,6 +13,12 @@ public interface LivroRepository extends JpaRepository<Livro, String> {
 
     List<Livro> findByEmprestado(boolean emprestado);
 
+    List<Livro> findByEmprestadoAndReservado(boolean emprestado, boolean reservado);
+
     List<Livro> findByEmprestadoAndAluno(boolean emprestado, Aluno aluno);
+
+    List<Livro> findByReservadoAndAluno(boolean reservado, Aluno aluno);
+
+    List<Livro> findByReservado(boolean reservado);
 
 }

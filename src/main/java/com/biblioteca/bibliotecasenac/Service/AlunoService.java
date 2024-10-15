@@ -66,6 +66,8 @@ public class AlunoService {
         return adminService.AutentificarAdmim(hSession, mv);
     }
 
+    // cógios pra procurar um aluno em uma secção
+
     public ModelAndView AutentificarAluno(HttpSession hSession, ModelAndView mv) {
         Aluno aluno = (Aluno) hSession.getAttribute("aluno");
         if (aluno == null) {
@@ -120,7 +122,9 @@ public class AlunoService {
 
     }
 
-    public ModelAndView PagAlugarLivroAluno(HttpSession hSession) { // página de alugar livros
+    // página de alugar livros, as ações de alugar e devolver estão no LivroService
+
+    public ModelAndView PagAlugarLivroAluno(HttpSession hSession) {
 
         ModelAndView mv = new ModelAndView("AlugarLivros");
         Aluno aluno = (Aluno) hSession.getAttribute("aluno");
