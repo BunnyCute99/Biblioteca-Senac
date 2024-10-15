@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Banco de Dados</title>
+    <title>Livros Reservados</title>
 </head>
 <body>
-    
     <div class="corpo">
-        <h1>Banco de Dados da Biblioteca</h1>
+        <h1>Livros Reservados</h1>
 
         <p>
             <a th:href="@{'/home'}">Home ></a>
             <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
             <a th:href="@{'/admim/home'}">Admin ></a>
-            <a th:href="@{'/livro/estoque'}">Estoque de Livros</a>
+            <a th:href="@{'/livro/reservados'}">Livros Reservados</a>
         </p>
 
         <table border="1">
@@ -24,11 +23,9 @@
                     <td>Código</td>
                     <td>Título</td>
                     <td>Data</td>
-                    <td>Emprestado</td>
                     <td>Reservado</td>
-                    <td>Exluir</td>
-                    <td>Editar</td>
-    
+                    <td>Aluno id</td>
+                    <td>Aluno</td>
                 </tr>
             </thead>
     
@@ -37,10 +34,9 @@
                     <td data-th-text="${livro.codigoLivro}"></td>
                     <td data-th-text="${livro.nomeLivro}"></td>
                     <td data-th-text="${livro.dataLivro}"></td>
-                    <td data-th-text="${livro.emprestado}"></td>
                     <td data-th-text="${livro.reservado}"></td>
-                    <td><a th:href="@{'/livro/exluir/'+${livro.codigoLivro}}">Excluir</a></td>
-                    <td><a th:href="@{'/livro/editar/'+${livro.codigoLivro}}">Editar</a></td>
+                    <td data-th-text="${livro.aluno?.id}"></td>
+                    <td data-th-text="${livro.aluno?.nome}"></td>
                 </tr>
             </tbody>
         </table>
