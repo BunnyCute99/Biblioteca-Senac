@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Biblioteca SENAC</title>
+    <title>Biblioteca SENAC | Admistrador</title>
 </head>
 <body>
-
-    <div class="logo">
-        <img src="/Senac_logo.png">
-    </div>
+    <header>
+        <div class="logo">
+            <img src="/Senac_logo.png">
+        </div>
+    </header>
+    <div class="principal">
+    <nav class="administracao">
+        <ul>
+            <li><a th:href="@{'/aluno/registrar'}">Registrar Usuário</a></li>
+            <li><a th:href="@{'/aluno/listar'}">Listar Usuário</a></li>
+            <li><a th:href="@{'/admim/registrar'}">Registrar Administrador</a></li>
+            <li><a th:href="@{'/admim/listar'}">Listar Administradores</a></li>
+        </ul>
+    </nav>
     
     <div class="corpo">
         <h1 th:text="'Página Inicial - Admin: '+${admim.nome}"></h1>
@@ -22,19 +32,20 @@
         </p>
   
         <ul>
-            <li><a th:href="@{'/livro/resgistro'}">Registrar Livro</a></li>
-            <li><a th:href="@{'/livro/estoque'}">Estoque de Livros</a></li>
-            <li><a th:href="@{'/livro/emprestados'}">Livros Alugados</a></li>
-            <li><a th:href="@{'/livro/reservados'}">Livros Reservados</a></li>
-            <li><a th:href="@{'/livro/disponiveis'}">Livros Disponíveis</a></li>
-            <li><a th:href="@{'/livro/devolucoes'}">Log de Livros Devolvidos</a></li>
-            <li><a th:href="@{'/aluno/registrar'}">Registrar Usuário</a></li>
-            <li><a th:href="@{'/aluno/listar'}">Listar Usuário</a></li>
-            <li><a th:href="@{'/admim/registrar'}">Registrar Administrador</a></li>
-            <li><a th:href="@{'/admim/listar'}">Listar Administradores</a></li>
+            <a th:href="@{'/livro/resgistro'}"><li>Registrar Livro</li></a>
+            <a th:href="@{'/livro/estoque'}"><li>Estoque de Livros</li></a>
+            <a th:href="@{'/livro/emprestados'}"><li>Livros Alugados</li></a>
+            <a th:href="@{'/livro/reservados'}"><li>Livros Reservados</li></a>
+            <a th:href="@{'/livro/disponiveis'}"><li>Livros Disponíveis</li></a>
+            <a th:href="@{'/livro/devolucoes'}"><li>Log de Livros Devolvidos</li></a>
+            
         </ul>
     </div>
-    
+    </div>
+    <footer>
+        <img src="/logo_senac_branco.svg">
+        <p>&copyBiblioteca Senac - Tubarão/SC. Todos os direitos reservados. 2024.</p>
+    </footer>
 
 </body>
 </html>

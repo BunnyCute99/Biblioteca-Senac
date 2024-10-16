@@ -7,17 +7,21 @@
     <title>Biblioteca Senac</title>
 </head>
 <body>
-    
+    <header>
+        <div class="logo">
+            <img src="/Senac_logo.png">
+        </div>
+    </header>
 
     <div class="corpo">
 
-        <h1>Lista de Alunos Registrados</h1>
+        <h1>Lista de Usuários Registrados</h1>
 
         <p>
             <a th:href="@{'/home'}">Home ></a>
             <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
             <a th:href="@{'/admim/home'}">Admin ></a>
-            <a th:href="@{'/aluno/listar'}">Listar Alunos</a>
+            <a th:href="@{'/aluno/listar'}">Listar Usuários</a>
         </p>
 
         <table border="1">
@@ -43,7 +47,10 @@
         </table>
 
     </div>
-    
+    <footer style="position: fixed;">
+        <img src="/logo_senac_branco.svg">
+        <p>&copyBiblioteca Senac - Tubarão/SC. Todos os direitos reservados. 2024.</p>
+    </footer>
 </body>
-</body>
+
 </html>

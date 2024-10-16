@@ -16,23 +16,54 @@ header {
     }
 }
 
+body {
+   background-image: url(./background.jpg);
+   
+}
+
+.principal {
+    display: flex;
+   flex-direction: row;
+   justify-content: left;
+}
+
 .corpo {
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    
-    
+    margin-top: 15px;
+    margin-bottom: 50px;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 35%;
+    border-radius: 10px;
+
+    label {
+        color: #0f4eb8;
+    }
+    p a{
+        color: #0f4eb8;
+    }
+    button {
+        background-color: #d98935;
+        padding: 10px;
+        border-radius: 1px;
+        margin-bottom: 50px;
+    }
     h1 {
         margin: 20px;
-        color: white;
+        color: #0f4eb8;
     }
 
     a {
         text-decoration: none;
         color: white;
-        font-size: large;
+        font-size: 25px;
+        width: 100%;
+        font-weight: 600;
     }
 
     ul{
@@ -46,7 +77,7 @@ header {
     }
 
     li {
-        width: 100%;
+        
         padding: 30px;
         background-color: orange;
         border-radius: 5px;
@@ -54,7 +85,7 @@ header {
     }
 
     li:hover{
-        box-shadow: rgba(0, 0, 0, 0.726) 2.4px 2.4px 3.2px;
+        box-shadow: rgba(0, 0, 0, 0.726) 2.4px 2.4px 0.5px;
     }
 
     table {
@@ -79,20 +110,41 @@ header {
     } 
 }
 
+nav {
+    background-color: white;
+    width: fit-content;
+    height: 600px;
+    border-radius: 10px;
+    margin: 15px;
+    a {
+        text-decoration: none;
+        margin: 20px 10px;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        list-style: none;
+    }
+    li {
+        margin-top: 15px;
+    }
+}
+
 footer {
     height: 150px;
     width: 100%;
     background-color: #0f4eb8;
     color: white;
     text-align: center;
-    position:fixed;
+
     bottom: 0;
     display: flex;
     justify-content: center;
     img {
         height: 50px;
         padding-top: 40px;
-        position: fixed;
+
         left: 50px;
     }
     p {
