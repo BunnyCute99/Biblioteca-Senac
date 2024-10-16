@@ -58,7 +58,8 @@ public class LivroService {
                 // valor padrão de emprestado
                 livro.setEmprestado(false);
                 // pega a hora atual do computador, então converte em um String com a formatação
-                // acima e seta a data no livro
+                livro.setReservado(false);
+                // seta a data no livro
                 LocalDateTime date = LocalDateTime.now();
                 String livrodate = "" + date.format(dateTimeFormatter);
                 livro.setDataLivro(livrodate);
@@ -116,6 +117,17 @@ public class LivroService {
 
         List<Livro> livrosAlugados = livroRepository.findByEmprestado(true); // acha livros que estejam emprestados
         mv.addObject("livros", livrosAlugados);
+        return adminService.AutentificarAdmim(hSession, mv);
+    }
+
+    // lista livros reservados por usuários
+    public ModelAndView PagListarReservados(HttpSession hSession) {
+        ModelAndView mv = new ModelAndView("LivrosReservados");
+
+        // acha livros que estão reservados
+        List<Livro> livros = livroRepository.findByReservado(true);
+        mv.addObject("livros", livros);
+
         return adminService.AutentificarAdmim(hSession, mv);
     }
 
@@ -217,7 +229,9 @@ public class LivroService {
 
     // Alugar livro
     public ModelAndView AlugarLivroAluno(String codigoLivro, HttpSession hSession) {
+
         ModelAndView mv = new ModelAndView();
+
         if (alunoService.AutentificarAluno(hSession)) {
             mv.setViewName("AlugarLivros");
             Livro livro = livroRepository.findById(codigoLivro).get();

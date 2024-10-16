@@ -121,6 +121,11 @@ public class LivroController {
         return livroService.PagListarEmprestados(hSession);
     }
 
+    @GetMapping("reservados") // lista livros reservados
+    public ModelAndView PagListarReservados(HttpSession hSession) {
+        return livroService.PagListarReservados(hSession);
+    }
+
     @GetMapping("/disponiveis") // lista de Disponíveis
     public ModelAndView PagListarDisponiveis(HttpSession hSession) {
         return livroService.PagListarDisponiveis(hSession);
