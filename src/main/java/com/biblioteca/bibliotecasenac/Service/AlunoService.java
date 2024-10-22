@@ -37,7 +37,7 @@ public class AlunoService {
 
     public ModelAndView ResgistrarAluno(Aluno aluno, String rsenha, HttpSession hSession) { // Registra alunos no banco
         ModelAndView mv = new ModelAndView("RegistrarAluno");
-        if (AutentificarAluno(hSession)) {
+        if (adminService.AutentificarAdmim(hSession)) {
             if (aluno.getSenha().equals(rsenha)) {
                 aluno.setNumeroLivros(0); // seta o contador de livros do aluno pra 0
                 aluno.setSenha(passwordEncoder.encode(aluno.getSenha())); // criptogra a senha
