@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Resgistrar</title>
+    <title>Biblioteca SENAC | Edição de Livros</title>
 </head>
 <body>
-    <div class="corpo">
-        <h1>Pagina de Resgistrar Livros</h1>
+    <header>
+        <div class="logo">
+            <img src="/Senac_logo.png">
+        </div>
+    </header>
+    <div class="corpo" style="margin-left: 25%;">
+        <h1>Pagina de Edição de Livros</h1>
 
         <p>
             <a th:href="@{'/home'}">Home ></a>
-            <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
-            <a th:href="@{'/admim/home'}">Admin ></a>
+            <a th:href="@{'/admim/entrar'}">Login do Administrador ></a>
+            <a th:href="@{'/admim/home'}">Administrador ></a>
             <a th:href="@{'/livro/estoque'}">Estoque de Livros ></a>
             <a th:href="@{'/livro/editar/'+${livro.codigoLivro}}">Editar</a>
         </p>

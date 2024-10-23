@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Registro de livros</title>
+    <title>Biblioteca SENAC | Registro de livros</title>
 </head>
 <body>
 
-    <div class="corpo">
+    <div class="corpo" style="margin-left: 30%;">
         <h1>Registro de Livros</h1>
         <p>
             <a th:href="@{'/home'}">Home ></a>
-            <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
-            <a th:href="@{'/admim/home'}">Admin ></a>
-            <a th:href="@{'/livro/resgistro'}">Registrar Livro</a>
+            <a th:href="@{'/admim/entrar'}">Login do Adminstrador ></a>
+            <a th:href="@{'/admim/home'}">Administrador ></a>
+            <a th:href="@{'/livro/resgistro'}">Registrar Livros</a>
         </p>
 
         <div th:if="${erro}">

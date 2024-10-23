@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Biblioteca Senac</title>
+    <title>Biblioteca SENAC | Registro de Administrador</title>
 </head>
 <body>
     <header>
@@ -12,14 +12,14 @@
             <img src="/Senac_logo.png">
         </div>
     </header>
-    <div class="corpo">
+    <div class="corpo" style="margin-left: 25%;">
 
-        <h1>Página de Cadastro de Admim</h1>
+        <h1>Página de Cadastro de Administrador</h1>
 
         <p>
             <a th:href="@{'/home'}">Home ></a>
-            <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
-            <a th:href="@{'/admim/home'}">Admin ></a>
+            <a th:href="@{'/admim/entrar'}">Login do Administrador ></a>
+            <a th:href="@{'/admim/home'}">Administrador ></a>
             <a th:href="@{'/admim/registrar'}">Registrar Administrador</a>
             
         </p>
@@ -42,7 +42,7 @@
             <label>Senha</label><br>
             <input type="password" name="senha" required><br><br>
 
-            <label>Repitir a Senha</label><br>
+            <label>Repetir a Senha</label><br>
             <input type="password" name="rsenha" required><br><br>
 
             <button type="submit">Salvar</button>

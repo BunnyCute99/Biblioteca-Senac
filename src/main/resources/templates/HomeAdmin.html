@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Biblioteca SENAC</title>
+    <title>Biblioteca SENAC | Administrador</title>
 </head>
 <body>
-
-    <div class="logo">
-        <img src="/Senac_logo.png">
-    </div>
+    <header>
+        <div class="logo">
+            <img src="/Senac_logo.png">
+        </div>
+        <nav class="administracao">
+            <ul>
+                <li><a th:href="@{'/aluno/registrar'}">Registrar Usuário</a></li>
+                <li><a th:href="@{'/aluno/listar'}">Listar Usuários</a></li>
+                <li><a th:href="@{'/admim/registrar'}">Registrar Administrador</a></li>
+                <li><a th:href="@{'/admim/listar'}">Listar Administradores</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="principal">
     
-    <div class="corpo">
-        <h1 th:text="'Página Inicial - Admin: '+${admim.nome}"></h1>
+    <div class="corpo" style="margin-left: 30%;">
+        <h1 th:text="'Página Inicial - Administrador: '+${admim.nome}"></h1>
 
         <p>
             <a th:href="@{'/home'}">Home ></a>
-            <a th:href="@{'/admim/entrar'}">Entrar Admin ></a>
-            <a th:href="@{'/admim/home'}">Admin</a>
+            <a th:href="@{'/admim/entrar'}">Login do Administrador ></a>
+            <a th:href="@{'/admim/home'}">Administrador</a>
         </p>
   
         <ul>
