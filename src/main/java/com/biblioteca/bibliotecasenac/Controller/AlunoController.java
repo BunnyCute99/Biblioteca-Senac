@@ -64,4 +64,9 @@ public class AlunoController {
         return alunoService.PagAlugarLivroAluno(hSession);
     }
 
+    @GetMapping("/reservar")
+    public ModelAndView reservarLivroAluno(HttpSession hSession) {
+        return alunoService.reservarLivroAluno(hSession);
+    }
+
 }

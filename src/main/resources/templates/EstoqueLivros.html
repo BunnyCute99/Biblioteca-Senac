@@ -7,11 +7,7 @@
     <title>Banco de Dados</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="/Senac_logo.png">
-        </div>
-    </header>
+    
     <div class="corpo">
         <h1>Banco de Dados da Biblioteca</h1>
 
@@ -30,7 +26,7 @@
                     <td>Data</td>
                     <td>Emprestado</td>
                     <td>Reservado</td>
-                    <td>Exluir</td>
+                    <td>Excluir</td>
                     <td>Editar</td>
     
                 </tr>
@@ -43,15 +39,12 @@
                     <td data-th-text="${livro.dataLivro}"></td>
                     <td data-th-text="${livro.emprestado}"></td>
                     <td data-th-text="${livro.reservado}"></td>
-                    <td><a th:href="@{'/livro/exluir/'+${livro.codigoLivro}}">Excluir</a></td>
+                    <td><a th:href="@{'/livro/excluir/'+${livro.codigoLivro}}">Excluir</a></td>
                     <td><a th:href="@{'/livro/editar/'+${livro.codigoLivro}}">Editar</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <footer style="position: fixed;">
-        <img src="/logo_senac_branco.svg">
-        <p>&copyBiblioteca Senac - Tubarão/SC. Todos os direitos reservados. 2024.</p>
-    </footer>
+    
 </body>
 </html>
