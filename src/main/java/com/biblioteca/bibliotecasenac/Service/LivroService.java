@@ -52,7 +52,7 @@ public class LivroService {
             // livro no repositório com esse código
             if (lOptional.isPresent()) {
                 // mensagem de erro
-                mv.addObject("erro", "código de livro já exite");
+                mv.addObject("erro", "Código de livro já existe");
 
             } else {
                 // valor padrão de emprestado
@@ -66,7 +66,7 @@ public class LivroService {
                 // salva livro no repositório
                 livroRepository.save(livro);
                 // envia uma mensagem de certo pra view
-                mv.addObject("certo", "livro registrado com sucesso");
+                mv.addObject("certo", "Livro registrado com sucesso");
 
             }
 

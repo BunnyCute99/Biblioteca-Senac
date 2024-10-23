@@ -115,7 +115,7 @@ public class AdminService {
                 if (aOptional.isPresent()) { // se usuário já existir
                     mv.addObject("erro", "ERRO: Usuário já existe");
                 } else { // se as senhas não forem iguais
-                    mv.addObject("erro", "ERRO Senha não são iguais");
+                    mv.addObject("erro", "ERRO: Senhas não são iguais");
                 }
             }
 
@@ -180,7 +180,7 @@ public class AdminService {
                 mv.setViewName("redirect:/admim/listar"); // redireciona pra listar os admins
             } else {
                 mv.addObject("admim", admim); // manda o admin pra view
-                mv.addObject("erro", "Senha Não São Iguais ou Usuário já Existe"); // mensagem de erro
+                mv.addObject("erro", "Senhas NÃO são iguais ou usuário já existe"); // mensagem de erro
                 mv.setViewName("EditarAdimin");
             }
 

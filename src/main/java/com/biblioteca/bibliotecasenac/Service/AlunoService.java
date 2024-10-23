@@ -47,7 +47,7 @@ public class AlunoService {
 
             } else {
                 // mensagem de aviso que deu erro
-                mv.addObject("erro", "senha não são iguais");
+                mv.addObject("erro", "Senha não são iguais");
             }
         } else {
             mv.setViewName("EntrarAluno");
@@ -103,7 +103,7 @@ public class AlunoService {
 
         } else {
             mv = new ModelAndView("EntrarAluno"); // volta pra pagina de login com mensagem de erro
-            mv.addObject("erro", "erro no login número da matrícula ou senha incorretos");
+            mv.addObject("erro", "Erro no login. Número da matrícula ou senha incorretos");
         }
 
         return mv;
