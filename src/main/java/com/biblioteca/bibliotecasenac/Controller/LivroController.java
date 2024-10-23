@@ -49,9 +49,9 @@ public class LivroController {
         return livroService.PagListarEstoque(hSession);
     }
 
-    @GetMapping("/exluir/{codigoLivro}") // botão de excluir Livro por id
-    public ModelAndView ExluirLivro(@PathVariable("codigoLivro") String codigoLivro, HttpSession hSession) {
-        return livroService.ExluirLivro(codigoLivro, hSession);
+    @GetMapping("/excluir/{codigoLivro}") // botão de excluir Livro por id
+    public ModelAndView ExcluirLivro(@PathVariable("codigoLivro") String codigoLivro, HttpSession hSession) {
+        return livroService.ExcluirLivro(codigoLivro, hSession);
     }
 
     /*
@@ -121,7 +121,7 @@ public class LivroController {
         return livroService.PagListarEmprestados(hSession);
     }
 
-    @GetMapping("reservados") // lista livros reservados
+    @GetMapping("/reservados") // lista livros reservados
     public ModelAndView PagListarReservados(HttpSession hSession) {
         return livroService.PagListarReservados(hSession);
     }
@@ -136,13 +136,13 @@ public class LivroController {
         return livroService.PagListaLivrosDevolvidos(hSession);
     }
 
-    @GetMapping("/devolucoes/exluirtudo") // excluir todo o log de livros devolvidos
+    @GetMapping("/devolucoes/excluirtudo") // excluir todo o log de livros devolvidos
     public String ExcluirListaDevolvidos(HttpSession hSession) {
 
         return livroService.ExcluirListaDevolvidos(hSession);
     }
 
-    @GetMapping("/devolucoes/exluiritem/{ordem}") // excluir um item dos livros devolvidos
+    @GetMapping("/devolucoes/excluiritem/{ordem}") // excluir um item dos livros devolvidos
     public String ExcluirLivroDevolvidos(@PathVariable("ordem") int ordem, HttpSession hSession) {
 
         return livroService.ExcluirLivroDevolvidos(ordem, hSession);
@@ -161,10 +161,22 @@ public class LivroController {
         return livroService.AlugarLivroAluno(codigoLivro, hSession);
     }
 
+    @GetMapping("/reservarAluno/{codigoLivro}") // botão de reservar por id com o aluno
+    public ModelAndView reservarLivroAluno(@PathVariable("codigoLivro") String codigoLivro, HttpSession hSession) {
+
+        return livroService.reservarLivroAluno(codigoLivro, hSession);
+    }
+
     @GetMapping("/devolverLivro/{codigoLivro}") // devolver livro alugados por um aluno
     public ModelAndView DevolverLivroAluno(@PathVariable("codigoLivro") String codigoLivro, HttpSession hSession) {
 
         return livroService.DevolverLivroAluno(codigoLivro, hSession);
+    }
+
+    @GetMapping("/cancelarLivro/{codigoLivro}") // cancelar reserva de livros por um aluno
+    public ModelAndView CancelarLivroAluno(@PathVariable("codigoLivro") String codigoLivro, HttpSession hSession) {
+
+        return livroService.CancelarLivroAluno(codigoLivro, hSession);
     }
 
 }

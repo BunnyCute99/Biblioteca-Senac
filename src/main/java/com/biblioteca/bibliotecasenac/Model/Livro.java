@@ -1,10 +1,11 @@
 package com.biblioteca.bibliotecasenac.Model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDateTime;
 
 @Entity
 public class Livro {
@@ -13,11 +14,10 @@ public class Livro {
     private String codigoLivro;
     private String nomeLivro;
     private String dataLivro;
+    private String dataLimiteReserva;
     private boolean emprestado;
     private boolean reservado;
-    private LocalDateTime dataLimiteReserva;
-    private LocalDateTime dataEntrada;
-    private LocalDateTime dataSaida;
+    private LocalDateTime limiteReserva;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     Aluno aluno;
@@ -25,16 +25,15 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(String codigoLivro, String nomeLivro, String dataLivro, boolean emprestado, boolean reservado,
-            LocalDateTime dataLimiteReserva, LocalDateTime dataEntrada, LocalDateTime dataSaida, Aluno aluno) {
+    public Livro(String codigoLivro, String nomeLivro, String dataLivro, String dataLimiteReserva, boolean emprestado,
+            boolean reservado, LocalDateTime limiteReserva, Aluno aluno) {
         this.codigoLivro = codigoLivro;
         this.nomeLivro = nomeLivro;
         this.dataLivro = dataLivro;
+        this.dataLimiteReserva = dataLimiteReserva;
         this.emprestado = emprestado;
         this.reservado = reservado;
-        this.dataLimiteReserva = dataLimiteReserva;
-        this.dataEntrada = dataEntrada;
-        this.dataSaida = dataSaida;
+        this.limiteReserva = limiteReserva;
         this.aluno = aluno;
     }
 
@@ -62,20 +61,20 @@ public class Livro {
         this.dataLivro = dataLivro;
     }
 
+    public String getDataLimiteReserva() {
+        return dataLimiteReserva;
+    }
+
+    public void setDataLimiteReserva(String dataLimiteReserva) {
+        this.dataLimiteReserva = dataLimiteReserva;
+    }
+
     public boolean isEmprestado() {
         return emprestado;
     }
 
     public void setEmprestado(boolean emprestado) {
         this.emprestado = emprestado;
-    }
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
     }
 
     public boolean isReservado() {
@@ -86,28 +85,20 @@ public class Livro {
         this.reservado = reservado;
     }
 
-    public LocalDateTime getDataLimiteReserva() {
-        return dataLimiteReserva;
+    public LocalDateTime getLimiteReserva() {
+        return limiteReserva;
     }
 
-    public void setDataLimiteReserva(LocalDateTime dataLimiteReserva) {
-        this.dataLimiteReserva = dataLimiteReserva;
+    public void setLimiteReserva(LocalDateTime limiteReserva) {
+        this.limiteReserva = limiteReserva;
     }
 
-    public LocalDateTime getDataEntrada() {
-        return dataEntrada;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setDataEntrada(LocalDateTime dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
-
-    public LocalDateTime getDataSaida() {
-        return dataSaida;
-    }
-
-    public void setDataSaida(LocalDateTime dataSaida) {
-        this.dataSaida = dataSaida;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
 }

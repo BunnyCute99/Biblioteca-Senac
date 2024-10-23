@@ -129,11 +129,25 @@ public class AlunoService {
         ModelAndView mv = new ModelAndView("AlugarLivros");
         Aluno aluno = (Aluno) hSession.getAttribute("aluno");
 
-        List<Livro> livrosDisponiveis = livroRepository.findByEmprestado(false);
+        List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
         List<Livro> livrosAlugados = livroRepository.findByEmprestadoAndAluno(true, aluno);
 
         mv.addObject("livros", livrosDisponiveis);
         mv.addObject("livrosAlugados", livrosAlugados);
+        mv.addObject("aluno", aluno);
+
+        return AutentificarAluno(hSession, mv);
+    }
+
+    public ModelAndView reservarLivroAluno(HttpSession hSession) {
+        ModelAndView mv = new ModelAndView("ReservarLivros");
+        Aluno aluno = (Aluno) hSession.getAttribute("aluno");
+
+        List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
+        List<Livro> livrosReservados = livroRepository.findByReservadoAndAluno(true, aluno);
+
+        mv.addObject("livros", livrosDisponiveis);
+        mv.addObject("livrosReservados", livrosReservados);
         mv.addObject("aluno", aluno);
 
         return AutentificarAluno(hSession, mv);

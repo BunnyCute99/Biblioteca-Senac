@@ -57,11 +57,12 @@ public class LivroService {
             } else {
                 // valor padrão de emprestado
                 livro.setEmprestado(false);
-                // pega a hora atual do computador, então converte em um String com a formatação
+                // valor padrão de reservado
                 livro.setReservado(false);
-                // seta a data no livro
+                // pega a hora atual do computador, então converte em um String com a formatação
                 LocalDateTime date = LocalDateTime.now();
                 String livrodate = "" + date.format(dateTimeFormatter);
+                // seta a data no livro
                 livro.setDataLivro(livrodate);
                 // salva livro no repositório
                 livroRepository.save(livro);
@@ -90,7 +91,7 @@ public class LivroService {
     }
 
     // excluir livro
-    public ModelAndView ExluirLivro(String codigoLivro, HttpSession hSession) {
+    public ModelAndView ExcluirLivro(String codigoLivro, HttpSession hSession) {
         ModelAndView mv = new ModelAndView("redirect:/livro/estoque");
 
         if (adminService.AutentificarAdmim(hSession)) {
@@ -111,7 +112,7 @@ public class LivroService {
         return mv;
     }
 
-    // lista os livros que foram imprestado aos usuários
+    // lista os livros que foram emprestado aos usuários
     public ModelAndView PagListarEmprestados(HttpSession hSession) {
         ModelAndView mv = new ModelAndView("LivrosAlugados");
 
@@ -200,7 +201,7 @@ public class LivroService {
     public ModelAndView AdicionaDevolvidosDisponiveis(ModelAndView mv, Aluno aluno) {
 
         // lista de livros disponiveis
-        List<Livro> livrosDisponiveis = livroRepository.findByEmprestado(false);
+        List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
 
         // lista de livros alugados pelo aluno
         List<Livro> livrosAlugados = livroRepository.findByEmprestadoAndAluno(true, aluno);
@@ -208,6 +209,21 @@ public class LivroService {
         mv.addObject("aluno", aluno);
         mv.addObject("livros", livrosDisponiveis);
         mv.addObject("livrosAlugados", livrosAlugados);
+        return mv;
+    }
+
+    // Adiciona a secção as Lista de Livros Disponíveis e de Alugados pelo Aluno
+    public ModelAndView AdicionaDevolvidosDisponiveisReserva(ModelAndView mv, Aluno aluno) {
+
+        // lista de livros disponiveis
+        List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
+
+        // lista de livros reservados pelo aluno
+        List<Livro> livrosReservados = livroRepository.findByReservadoAndAluno(true, aluno);
+
+        mv.addObject("aluno", aluno);
+        mv.addObject("livros", livrosDisponiveis);
+        mv.addObject("livrosReservados", livrosReservados);
         return mv;
     }
 
@@ -263,6 +279,49 @@ public class LivroService {
         return mv;
     }
 
+    public ModelAndView reservarLivroAluno(String codigoLivro, HttpSession hSession) {
+
+        ModelAndView mv = new ModelAndView();
+
+        if (alunoService.AutentificarAluno(hSession)) {
+            mv.setViewName("ReservarLivros");
+            Livro livro = livroRepository.findById(codigoLivro).get();
+            Aluno aluno = (Aluno) hSession.getAttribute("aluno");
+
+            // se o livro não está reservado e o aluno possui menos de 5 livro alugados
+            if (aluno.getNumeroLivros() < 5 && livro.isReservado() == false && livro.isEmprestado() == false) {
+
+                livro.setReservado(true);
+
+                // "agora" pega a data atual para que "limite" adicione +2 no dia
+                LocalDateTime agora = LocalDateTime.now();
+                LocalDateTime limite = agora.plusDays(2);
+                String limiteString = "" + limite.format(dateTimeFormatter);
+
+                livro.setAluno(alunoRepository.findById(aluno.getId()).get());
+                // atualiza a data do livro pra data atual
+                livro.setDataLivro(AtualizarHoraAgora());
+                // data limite para a retirada do livro
+                livro.setDataLimiteReserva(limiteString);
+                // salva livro no Banco
+                livroRepository.save(livro);
+                // atualiza o aluno no Banco e na Secção
+                aluno.setNumeroLivros(aluno.getNumeroLivros() + 1);
+                alunoRepository.save(aluno);
+                hSession.setAttribute("aluno", aluno);
+            } else {
+                // mensagem de erro
+                mv.addObject("erro", "limite livros atingido ou livro já está alugado/reservado");
+            }
+            // adiciona as listas (Disponíveis e Reservados pelo Aluno) para view
+            mv = AdicionaDevolvidosDisponiveisReserva(mv, aluno);
+
+        } else {
+            mv.setViewName("EntrarAluno");
+        }
+        return mv;
+    }
+
     // devolver livro
     public ModelAndView DevolverLivroAluno(String codigoLivro, HttpSession hSession) {
         ModelAndView mv = new ModelAndView();
@@ -294,6 +353,42 @@ public class LivroService {
 
             // adiciona as listas (Disponíveis e Alugados pelo Aluno) para view
             mv = AdicionaDevolvidosDisponiveis(mv, aluno);
+        } else {
+            mv.setViewName("EntrarAluno");
+        }
+        return mv;
+    }
+
+    // cancelar reserva livro
+    public ModelAndView CancelarLivroAluno(String codigoLivro, HttpSession hSession) {
+        ModelAndView mv = new ModelAndView();
+        if (alunoService.AutentificarAluno(hSession)) {
+
+            mv.setViewName("ReservarLivros");
+            Livro livro = livroRepository.findById(codigoLivro).get();
+            Aluno aluno = (Aluno) hSession.getAttribute("aluno");
+
+            if (livro.isReservado()) {
+                // devolve o livro pra biblioteca
+                livro.setReservado(false);
+                // atualiza a data
+                livro.setDataLivro(AtualizarHoraAgora());
+                // *adicionar um log de devoluções canceladas?
+
+                livro.setAluno(null); // limpa a relação com aluno do livro
+                livroRepository.save(livro);
+
+                // atualiza o aluno no Banco e na Secção
+                aluno.setNumeroLivros(aluno.getNumeroLivros() - 1);
+                alunoRepository.save(aluno);
+                hSession.setAttribute("aluno", aluno);
+
+            } else {
+                mv.addObject("erro", "livro já está devolvido");
+            }
+
+            // adiciona as listas (Disponíveis e Alugados pelo Aluno) para view
+            mv = AdicionaDevolvidosDisponiveisReserva(mv, aluno);
         } else {
             mv.setViewName("EntrarAluno");
         }

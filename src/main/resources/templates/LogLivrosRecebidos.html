@@ -46,7 +46,7 @@
                     <td data-th-text="${livro.dataLivroRecebida}"></td>
                     <td data-th-text="${livro.idAluno}"></td>
                     <td data-th-text="${livro.nomeAluno}"></td>
-                    <td><a th:href="@{'/livro/devolucoes/exluiritem/'+${livro.ordem}}">Limpar Item</a></td>
+                    <td><a th:href="@{'/livro/devolucoes/excluiritem/'+${livro.ordem}}">Limpar Item</a></td>
                 </tr>
             </tbody>
         </table>
@@ -55,5 +55,6 @@
         <img src="/logo_senac_branco.svg">
         <p>&copyBiblioteca Senac - Tubarão/SC. Todos os direitos reservados. 2024.</p>
     </footer>
+    
 </body>
 </html>
