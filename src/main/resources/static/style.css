@@ -43,14 +43,15 @@ header {
     }
 }
 
-.logo {
-    width: fit-content;
-    margin: 20px;
+body {
+   background-image: url(./background.jpg);
+   
 }
 
-.logo img{
-    height: 75px;
-    
+.principal {
+    display: flex;
+   flex-direction: row;
+   justify-content: left;
 }
 
 .corpo {
@@ -80,12 +81,15 @@ header {
     }
     h1 {
         margin: 20px;
-        color: white;
+        color: #0f4eb8;
     }
 
     a {
         text-decoration: none;
         color: white;
+        font-size: 25px;
+        width: 100%;
+        font-weight: 600;
     }
 
     ul{
@@ -99,15 +103,15 @@ header {
     }
 
     li {
-        width: 100%;
-        padding: 15px;
-        background-color: #fac17e;
+        
+        padding: 30px;
+        background-color: orange;
         border-radius: 5px;
         text-align: center;   
     }
 
     li:hover{
-        background-color: orange;
+        box-shadow: rgba(0, 0, 0, 0.726) 2.4px 2.4px 0.5px;
     }
 
     table {
