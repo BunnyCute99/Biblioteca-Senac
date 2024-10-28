@@ -2,6 +2,7 @@ package com.biblioteca.bibliotecasenac.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,10 @@ public class LivroService {
                 livro.setEmprestado(false);
                 // valor padrão de reservado
                 livro.setReservado(false);
+                // seta o codigo pra letras maiusculas
+                livro.setCodigoLivro(livro.getCodigoLivro().toUpperCase());
+                // seta o título pra letras maiusculas
+                livro.setNomeLivro(livro.getNomeLivro().toUpperCase());
                 // pega a hora atual do computador, então converte em um String com a formatação
                 LocalDateTime date = LocalDateTime.now();
                 String livrodate = "" + date.format(dateTimeFormatter);
@@ -86,6 +91,12 @@ public class LivroService {
         List<Livro> livros = livroRepository.findAll(Sort.by(Sort.Direction.ASC, "nomeLivro"));
         // mannda a lista pra view
         mv.addObject("livros", livros);
+        // adicionar opcoes de Pesquisa
+        List<String> opcoes = new ArrayList<>();
+        opcoes.add("TÍTULO");
+        opcoes.add("CÓDIGO");
+
+        mv.addObject("opcoes", opcoes);
         // autentificação de admim
         return adminService.AutentificarAdmim(hSession, mv);
     }
@@ -137,7 +148,7 @@ public class LivroService {
         ModelAndView mv = new ModelAndView("LivrosDisponiveis");
 
         // acha livros ques não estam emprestados
-        List<Livro> livrosDisponiveis = livroRepository.findByEmprestado(false);
+        List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
         // manda a lista praa view
         mv.addObject("livros", livrosDisponiveis);
         return adminService.AutentificarAdmim(hSession, mv);
@@ -206,9 +217,15 @@ public class LivroService {
         // lista de livros alugados pelo aluno
         List<Livro> livrosAlugados = livroRepository.findByEmprestadoAndAluno(true, aluno);
 
+        List<String> opcoes = new ArrayList<>();
+        opcoes.add("TÍTULO");
+        opcoes.add("CÓDIGO");
+
         mv.addObject("aluno", aluno);
         mv.addObject("livros", livrosDisponiveis);
         mv.addObject("livrosAlugados", livrosAlugados);
+        mv.addObject("opcoes", opcoes);
+
         return mv;
     }
 
@@ -221,9 +238,15 @@ public class LivroService {
         // lista de livros reservados pelo aluno
         List<Livro> livrosReservados = livroRepository.findByReservadoAndAluno(true, aluno);
 
+        List<String> opcoes = new ArrayList<>();
+        opcoes.add("TÍTULO");
+        opcoes.add("CÓDIGO");
+
         mv.addObject("aluno", aluno);
         mv.addObject("livros", livrosDisponiveis);
         mv.addObject("livrosReservados", livrosReservados);
+        mv.addObject("opcoes", opcoes);
+
         return mv;
     }
 
@@ -393,6 +416,40 @@ public class LivroService {
             mv.setViewName("EntrarAluno");
         }
         return mv;
+    }
+
+    // Busca de Livro
+
+    public List<Livro> BuscarLivrosTipoString(String buscaLivro, String tipoBusca) {
+        List<Livro> livros = new ArrayList<>();
+        if (tipoBusca.equals("TÍTULO")) {
+            livros = livroRepository.findByNomeLivroContainingIgnoreCase(buscaLivro);
+        }
+        if (tipoBusca.equals("CÓDIGO")) {
+            livros = livroRepository.findByCodigoLivroContainingIgnoreCase(buscaLivro);
+        }
+        return livros;
+    }
+
+    // para o Estoque de Livros
+    public ModelAndView BuscarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
+
+        List<String> opcoes = new ArrayList<>();
+        opcoes.add("TÍTULO");
+        opcoes.add("CÓDIGO");
+
+        ModelAndView mv = new ModelAndView("EstoqueLivros");
+        if (buscaLivro != null) {
+            List<Livro> livros = BuscarLivrosTipoString(buscaLivro, tipoBusca);
+            mv.addObject("livros", livros);
+            mv.addObject("tipoBusca", tipoBusca);
+            mv.addObject("buscaLivro", buscaLivro);
+            mv.addObject("opcoes", opcoes);
+
+        }
+
+        return adminService.AutentificarAdmim(hSession, mv);
+
     }
 
 }

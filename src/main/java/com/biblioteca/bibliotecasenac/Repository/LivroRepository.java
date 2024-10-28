@@ -21,4 +21,14 @@ public interface LivroRepository extends JpaRepository<Livro, String> {
 
     List<Livro> findByReservado(boolean reservado);
 
+    List<Livro> findByNomeLivroContainingIgnoreCase(String nomeLivro);
+
+    List<Livro> findByCodigoLivroContainingIgnoreCase(String codigoLivro);
+
+    List<Livro> findByNomeLivroContainingIgnoreCaseAndEmprestadoAndReservado(String nomeLivro, boolean emprestado,
+            boolean reservado);
+
+    List<Livro> findByCodigoLivroContainsIgnoreCaseAndEmprestadoAndReservado(String codigoLivro, boolean emprestado,
+            boolean reservado);
+
 }

@@ -179,4 +179,11 @@ public class LivroController {
         return livroService.CancelarLivroAluno(codigoLivro, hSession);
     }
 
+    // Secção pra Buscar por Livros
+
+    @PostMapping("/buscarEstoque")
+    public ModelAndView BuscarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
+        return livroService.BuscarLivros(hSession, buscaLivro, tipoBusca);
+    }
+
 }

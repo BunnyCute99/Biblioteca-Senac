@@ -69,4 +69,17 @@ public class AlunoController {
         return alunoService.reservarLivroAluno(hSession);
     }
 
+    // Buscar Livros como Aluno
+
+    // buscar na aba de Alugar Livros
+    @PostMapping("/buscarAlugar")
+    public ModelAndView BuscarAlugarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
+        return alunoService.BuscarAlugarLivros(hSession, buscaLivro, tipoBusca);
+    }
+
+    // buscar na aba de Reservar Livros
+    @PostMapping("/buscarReservar")
+    public ModelAndView BuscarReservarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
+        return alunoService.BuscarReservarLivros(hSession, buscaLivro, tipoBusca);
+    }
 }
