@@ -1,5 +1,6 @@
 package com.biblioteca.bibliotecasenac.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -132,9 +133,14 @@ public class AlunoService {
         List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
         List<Livro> livrosAlugados = livroRepository.findByEmprestadoAndAluno(true, aluno);
 
+        List<String> opcoes = new ArrayList<>();
+        opcoes.add("TÍTULO");
+        opcoes.add("CÓDIGO");
+
         mv.addObject("livros", livrosDisponiveis);
         mv.addObject("livrosAlugados", livrosAlugados);
         mv.addObject("aluno", aluno);
+        mv.addObject("opcoes", opcoes);
 
         return AutentificarAluno(hSession, mv);
     }
@@ -143,14 +149,61 @@ public class AlunoService {
         ModelAndView mv = new ModelAndView("ReservarLivros");
         Aluno aluno = (Aluno) hSession.getAttribute("aluno");
 
+        List<String> opcoes = new ArrayList<>();
+        opcoes.add("TÍTULO");
+        opcoes.add("CÓDIGO");
+
         List<Livro> livrosDisponiveis = livroRepository.findByEmprestadoAndReservado(false, false);
         List<Livro> livrosReservados = livroRepository.findByReservadoAndAluno(true, aluno);
 
         mv.addObject("livros", livrosDisponiveis);
         mv.addObject("livrosReservados", livrosReservados);
         mv.addObject("aluno", aluno);
+        mv.addObject("opcoes", opcoes);
 
         return AutentificarAluno(hSession, mv);
+    }
+
+    // Buscar Livros (nas abas de Emprestados e Reservados)
+
+    // método geral
+    public List<Livro> BuscarLivrosAlunos(String buscaLivro, String tipoBusca) {
+        List<Livro> livros = new ArrayList<>();
+        if (tipoBusca.equals("TÍTULO")) {
+            livros = livroRepository.findByNomeLivroContainingIgnoreCaseAndEmprestadoAndReservado(buscaLivro, false,
+                    false);
+        }
+        if (tipoBusca.equals("CÓDIGO")) {
+            livros = livroRepository.findByCodigoLivroContainsIgnoreCaseAndEmprestadoAndReservado(buscaLivro, false,
+                    false);
+        }
+        return livros;
+    }
+
+    // Busca Livros na secção de Alugar Livros
+    public ModelAndView BuscarAlugarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
+        ModelAndView mv = PagAlugarLivroAluno(hSession);
+        if (buscaLivro != null) {
+            List<Livro> livros = BuscarLivrosAlunos(buscaLivro, tipoBusca);
+            mv.addObject("livros", livros);
+            mv.addObject("tipoBusca", tipoBusca);
+            mv.addObject("buscaLivro", buscaLivro);
+        }
+
+        return mv;
+    }
+
+    // Busca Livros na secção de Reservar Livro
+    public ModelAndView BuscarReservarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
+        ModelAndView mv = reservarLivroAluno(hSession);
+        if (buscaLivro != null) {
+            List<Livro> livros = BuscarLivrosAlunos(buscaLivro, tipoBusca);
+            mv.addObject("livros", livros);
+            mv.addObject("tipoBusca", tipoBusca);
+            mv.addObject("buscaLivro", buscaLivro);
+        }
+
+        return mv;
     }
 
 }

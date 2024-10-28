@@ -167,8 +167,12 @@ public class AdminService {
 
         if (AutentificarAdmim(hSession)) {
 
-            if (aOptional.get().getId() == admim.getId()) { // se o admin editado tem o mesmo id do admin do repositório
-                aOptional = Optional.empty(); // esvazia o Optional
+            if (aOptional.isPresent()) {
+                if (aOptional.get().getId() == admim.getId()) { // se o admin editado tem o mesmo id do admin do
+                                                                // repositório
+                    aOptional = Optional.empty(); // esvazia o Optional
+                }
+
             }
 
             // se as senha digitadas são iguais e Optional está vazio, seja porque não
