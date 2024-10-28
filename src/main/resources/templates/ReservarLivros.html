@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Document</title>
+    <title>Biblioteca SENAC | Reserva</title>
 </head>
 <body>
 
@@ -46,6 +46,27 @@
         </table>
 
         <h3>Livros para Reservar</h3>
+
+        <div>
+            <br>
+            <form action="/aluno/buscarReservar" method="post" th:unless="${buscaLivro}">
+                <label>Busca</label>
+                <input type="text" name="buscaLivro" placeholder="Título" size="50">
+                <button type="submit">Buscar</button>
+                <select name="tipoBusca" >
+                    <option th:each="opcoe: ${opcoes}" th:value="${opcoe}" th:text="${opcoe}"></option>
+                </select>
+            </form>
+            <form action="/aluno/buscarReservar" method="post" th:if="${buscaLivro}">
+                <label>Busca</label>
+                <input type="text" name="buscaLivro" placeholder="Título" size="50" th:value="${buscaLivro}">
+                <button type="submit">Buscar</button>
+                <select name="tipoBusca">
+                    <option th:each="opcoe: ${opcoes}" th:value="${opcoe}" th:text="${opcoe}" th:selected="(${tipoBusca == opcoe})"></option>
+                </select>
+                <br>
+            </form>
+        </div>
 
         <table border="1">
             <thead>

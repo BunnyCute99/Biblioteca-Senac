@@ -51,6 +51,27 @@
 
         <h3>Livros para Alugar</h3>
 
+        <div>
+            <br>
+            <form action="/aluno/buscarAlugar" method="post" th:unless="${buscaLivro}">
+                <label>Busca</label>
+                <input type="text" name="buscaLivro" placeholder="Título" size="50">
+                <button type="submit">Buscar</button>
+                <select name="tipoBusca" >
+                    <option th:each="opcoe: ${opcoes}" th:value="${opcoe}" th:text="${opcoe}"></option>
+                </select>
+            </form>
+            <form action="/aluno/buscarAlugar" method="post" th:if="${buscaLivro}">
+                <label>Busca</label>
+                <input type="text" name="buscaLivro" placeholder="Título" size="50" th:value="${buscaLivro}">
+                <button type="submit">Buscar</button>
+                <select name="tipoBusca">
+                    <option th:each="opcoe: ${opcoes}" th:value="${opcoe}" th:text="${opcoe}" th:selected="(${tipoBusca == opcoe})"></option>
+                </select>
+                <br>
+            </form>
+        </div>
+
         <table border="1">
             <thead>
                 <tr>
