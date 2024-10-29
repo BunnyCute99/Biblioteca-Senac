@@ -32,8 +32,8 @@
                     <td>Id Aluno</td>
                     <td>Nome Aluno</td>
                     <td>
-                        <form action="/livro/devolucoes/exluirtudo" method="get">
-                            <button type="submit">Limpar Tudo</button>
+                        <form action="/livro/devolucoes/excluirtudo" method="get">
+                            <button type="submit" style="margin-bottom: 0;">Limpar Tudo</button>
                         </form>
                     </td>
                 </tr>
@@ -46,7 +46,7 @@
                     <td data-th-text="${livro.dataLivroRecebida}"></td>
                     <td data-th-text="${livro.idAluno}"></td>
                     <td data-th-text="${livro.nomeAluno}"></td>
-                    <td><a th:href="@{'/livro/devolucoes/exluiritem/'+${livro.ordem}}">Limpar Item</a></td>
+                    <td><a th:href="@{'/livro/devolucoes/excluiritem/'+${livro.ordem}}">Limpar Item</a></td>
                 </tr>
             </tbody>
         </table>
@@ -55,5 +55,6 @@
         <img src="/logo_senac_branco.svg">
         <p>&copyBiblioteca Senac - Tubarão/SC. Todos os direitos reservados. 2024.</p>
     </footer>
+    
 </body>
 </html>
