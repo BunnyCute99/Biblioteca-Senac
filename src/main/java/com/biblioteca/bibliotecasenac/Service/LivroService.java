@@ -326,6 +326,8 @@ public class LivroService {
                 livro.setDataLivro(AtualizarHoraAgora());
                 // data limite para a retirada do livro
                 livro.setDataLimiteReserva(limiteString);
+                // seta a data limite
+                livro.setLimiteReserva(limite);
                 // salva livro no Banco
                 livroRepository.save(livro);
                 // atualiza o aluno no Banco e na Secção
