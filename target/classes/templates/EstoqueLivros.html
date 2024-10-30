@@ -22,6 +22,27 @@
             <a th:href="@{'/livro/estoque'}">Estoque de Livros</a>
         </p>
 
+        <div>
+            <br>
+            <form action="/livro/buscarEstoque" method="post" th:unless="${buscaLivro}">
+                <label>Busca</label>
+                <input type="text" name="buscaLivro" placeholder="Título" size="50">
+                <button type="submit">Buscar</button>
+                <select name="tipoBusca" >
+                    <option th:each="opcoe: ${opcoes}" th:value="${opcoe}" th:text="${opcoe}"></option>
+                </select>
+            </form>
+            <form action="/livro/buscarEstoque" method="post" th:if="${buscaLivro}">
+                <label>Busca</label>
+                <input type="text" name="buscaLivro" placeholder="Título" size="50" th:value="${buscaLivro}">
+                <button type="submit">Buscar</button>
+                <select name="tipoBusca">
+                    <option th:each="opcoe: ${opcoes}" th:value="${opcoe}" th:text="${opcoe}" th:selected="(${tipoBusca == opcoe})"></option>
+                </select>
+            </form>
+            <br>
+        </div>
+
         <table border="1">
             <thead>
                 <tr>
@@ -30,7 +51,7 @@
                     <td>Data</td>
                     <td>Emprestado</td>
                     <td>Reservado</td>
-                    <td>Exluir</td>
+                    <td>Excluir</td>
                     <td>Editar</td>
     
                 </tr>
@@ -43,7 +64,7 @@
                     <td data-th-text="${livro.dataLivro}"></td>
                     <td data-th-text="${livro.emprestado}"></td>
                     <td data-th-text="${livro.reservado}"></td>
-                    <td><a th:href="@{'/livro/exluir/'+${livro.codigoLivro}}">Excluir</a></td>
+                    <td><a th:href="@{'/livro/excluir/'+${livro.codigoLivro}}">Excluir</a></td>
                     <td><a th:href="@{'/livro/editar/'+${livro.codigoLivro}}">Editar</a></td>
                 </tr>
             </tbody>
