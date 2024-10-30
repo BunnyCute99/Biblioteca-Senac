@@ -37,7 +37,8 @@
                     <td data-th-text="${livro.codigoLivro}"></td>
                     <td data-th-text="${livro.nomeLivro}"></td>
                     <td data-th-text="${livro.dataLivro}"></td>
-                    <td data-th-text="${livro.emprestado}"></td>
+                    <td th:if ="${livro.emprestado == True}">Emprestado</td>
+                    <td th:unless ="${livro.emprestado == True}">Disponível</td>
                 </tr>
             </tbody>
         </table>

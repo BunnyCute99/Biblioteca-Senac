@@ -43,7 +43,8 @@
                 <tr data-th-each="l: ${livrosAlugados}">
                     <td data-th-text="${l.codigoLivro}"></td>
                     <td data-th-text="${l.nomeLivro}"></td>
-                    <td data-th-text="${l.emprestado}"></td>
+                    <td th:if ="${l.emprestado == True}">Emprestado</td>
+                    <td th:unless ="${l.emprestado == True}">Disponível</td>
                     <td><a th:href="@{'/livro/devolverLivro/'+${l.codigoLivro}}">Devolver</a></td>
                 </tr>
             </tbody>
@@ -85,7 +86,8 @@
                 <tr data-th-each="livro: ${livros}">
                     <td data-th-text="${livro.codigoLivro}"></td>
                     <td data-th-text="${livro.nomeLivro}"></td>
-                    <td data-th-text="${livro.emprestado}"></td>
+                    <td th:if ="${livro.emprestado == True}">Emprestado</td>
+                    <td th:unless ="${livro.emprestado == True}">Disponível</td>
                     <td><a th:href="@{'/livro/alugarAluno/'+${livro.codigoLivro}}">Alugar</a></td>
                 </tr>
             </tbody>
