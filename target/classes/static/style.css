@@ -66,7 +66,7 @@ body {
     width: fit-content;
     height: fit-content;
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
     label {
         color: #0f4eb8;
     }
@@ -116,22 +116,31 @@ body {
 
     table {
         border-radius: 5px;
+        margin-bottom: 20px;
 
         thead td{
             font-weight: bold;
             background-color: #0f4eb8;
             padding: 10px;
+            text-align: center;
         }
         tbody td {
-            padding: 10px;
+            padding: 15px;
             color: black;
             background-color: white;
         }
         a {
             color: black;
+            font-size: 20px;
+            background-color: #d98935;
+            padding: 10px;
+            border-radius: 5px;
+
+
         }
         a:hover{
-            color: #0f4eb8;
+            color: #e3e7f0;
+            background-color: #0f4eb8;
         }
     } 
 }

@@ -320,7 +320,9 @@ public class LivroService {
                 LocalDateTime agora = LocalDateTime.now();
                 LocalDateTime limite = agora.plusDays(2);
                 String limiteString = "" + limite.format(dateTimeFormatter);
-
+                // seta a data limite
+                livro.setLimiteReserva(limite);
+                // seta aluno
                 livro.setAluno(alunoRepository.findById(aluno.getId()).get());
                 // atualiza a data do livro pra data atual
                 livro.setDataLivro(AtualizarHoraAgora());
@@ -396,6 +398,10 @@ public class LivroService {
                 livro.setReservado(false);
                 // atualiza a data
                 livro.setDataLivro(AtualizarHoraAgora());
+                // limpa a data limite
+                livro.setLimiteReserva(null);
+                // limpa a string da data
+                livro.setDataLimiteReserva(null);
                 // *adicionar um log de devoluções canceladas?
 
                 livro.setAluno(null); // limpa a relação com aluno do livro
