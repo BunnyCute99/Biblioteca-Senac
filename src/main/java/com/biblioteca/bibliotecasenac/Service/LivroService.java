@@ -202,6 +202,20 @@ public class LivroService {
 
     }
 
+    public ModelAndView PostEditarLivro(Livro livro, HttpSession hSession) {
+
+        Optional<Livro> lOptional = livroRepository.findById(livro.getCodigoLivro());
+
+        if (lOptional.isPresent()) {
+            lOptional.get().setNomeLivro(livro.getNomeLivro());
+            lOptional.get().setDataLivro(AtualizarHoraAgora());
+
+            livroRepository.save(lOptional.get());
+        }
+
+        return PagListarEstoque(hSession);
+    }
+
     // Atualizar hora
     public String AtualizarHoraAgora() {
         LocalDateTime localDateTime = LocalDateTime.now();
