@@ -25,7 +25,7 @@
 
         </p>
     
-        <p th:text="'Usuário: '+ ${aluno.nome} + ' Ativo'"></p>
+        <p th:text="'Usuário: '+ ${aluno.nome} + ' [Ativo]'"></p>
         <p th:text="'Você tem: '+${aluno.numeroLivros}+'/5 livros Alugados'"></p>
         <p th:if="${erro}">Número de Livros esgotado ou Livro já está Alugado</p>
 

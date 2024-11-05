@@ -45,6 +45,7 @@ header {
 
 body {
    background-image: url(./background.jpg);
+
    
 }
 
@@ -67,6 +68,8 @@ body {
     height: fit-content;
     border-radius: 10px;
     padding: 20px;
+
+    
     label {
         color: #0f4eb8;
     }
@@ -117,7 +120,7 @@ body {
     table {
         border-radius: 5px;
         margin-bottom: 20px;
-
+        overflow-y: scroll;
         thead td{
             font-weight: bold;
             background-color: #0f4eb8;
@@ -151,7 +154,6 @@ footer {
     background-color: #0f4eb8;
     color: white;
     text-align: center;
-
     bottom: 0;
     display: flex;
     justify-content: center;
@@ -164,4 +166,14 @@ footer {
     p {
         padding-top: 70px;
     }
+    
+}
+
+body::after {
+    content: '';
+    display: block;
+}
+
+.placeholder{
+    min-height: 100px;
 }
