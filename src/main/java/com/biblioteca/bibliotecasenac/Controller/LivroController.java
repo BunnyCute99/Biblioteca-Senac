@@ -153,6 +153,11 @@ public class LivroController {
         return livroService.EditarLivro(codigoLivro, model, hSession);
     }
 
+    @PostMapping("/editar")
+    public ModelAndView EditarLivro(Livro livro, HttpSession hSession) {
+        return livroService.PostEditarLivro(livro, hSession);
+    }
+
     // Secção pra alugar e devolver livros relacionando eles com Aluno
 
     @GetMapping("/alugarAluno/{codigoLivro}") // botão de alugar por id com o aluno
