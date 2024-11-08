@@ -206,4 +206,46 @@ public class AlunoService {
         return mv;
     }
 
+    // Deletar e Editar Aluno
+
+    // Deletar aluno
+    public ModelAndView DeletarAluno(HttpSession hSession, int id) {
+        if (adminService.AutentificarAdmim(hSession)) {
+            alunoRepository.deleteById(id);
+        }
+        return PagListarAluno(hSession);
+    }
+
+    // Página de Editar Aluno
+    public ModelAndView PagEditar(HttpSession hSession, int id) {
+        ModelAndView mv = new ModelAndView("EditarAluno");
+
+        Aluno aluno = alunoRepository.findById(id).get();
+
+        mv.addObject("aluno", aluno);
+
+        return adminService.AutentificarAdmim(hSession, mv);
+    }
+
+    // Salvar edição de Aluno no banco de Dados
+    public ModelAndView EditarAluno(HttpSession hSession, Aluno aluno, String rsenha) {
+        ModelAndView mv = new ModelAndView();
+        if (adminService.AutentificarAdmim(hSession)) {
+
+            if (aluno.getSenha().equals(rsenha)) {
+                aluno.setSenha(passwordEncoder.encode(aluno.getSenha()));
+                alunoRepository.save(aluno);
+                return PagListarAluno(hSession);
+            } else {
+                mv.setViewName("EditarAluno");
+                mv.addObject("aluno", aluno);
+                mv.addObject("erro", "Erro !!! Senhas Não São Iguais !!!");
+                return mv;
+            }
+        } else {
+            mv.setViewName("EntrarAluno");
+            return mv;
+        }
+    }
+
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Biblioteca SENAC | Edição de Usuários</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/Senac_logo.png">
+        </div>
+    </header>
+    <div class="corpo" style="margin-left: 25%;">
+
+        <h1>Página de Edição de Usuários</h1>
+
+        <p>
+            <a th:href="@{'/home'}">Home ></a>
+            <a th:href="@{'/admim/entrar'}">Login do Administrador ></a>
+            <a th:href="@{'/admim/home'}">Administrador ></a>
+            <a th:href="@{'/aluno/listar'}">Listar Usuários ></a>
+            <a th:href="@{'/aluno/editar/'+${aluno.id}}">Editar ></a>
+        </p>
+
+
+        <div th:if="${erro}"> <br>
+            <p th:text="${erro}"></p>
+        </div>
+
+        <form action="/aluno/editar" method="post">
+
+            <input type="hidden" name="id" th:value="${aluno?.id}">
+            <input type="hidden" name="numeroLivros" th:value="${aluno?.numeroLivros}">
+
+            <label>Nome</label><br>
+            <input type="text" name="nome" th:value="${aluno?.nome}" required><br><br>
+
+            <label>Senha</label><br>
+            <input type="password" name="senha" required><br><br>
+
+            <label>Repetir a Senha</label><br>
+            <input type="password" name="rsenha" required><br><br>
+
+            <button type="submit">Salvar</button>
+        </form><br>
+
+    </div>
+    <footer style="position: fixed;">
+        <img src="/logo_senac_branco.svg">
+        <p>&copyBiblioteca Senac - Tubarão/SC. Todos os direitos reservados. 2024.</p>
+    </footer>
+    
+</body>
+</html>

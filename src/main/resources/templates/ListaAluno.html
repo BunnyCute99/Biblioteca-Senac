@@ -41,8 +41,8 @@
                     <td data-th-text="${aluno.id}"></td>
                     <td data-th-text="${aluno.nome}"></td>
                     <td data-th-text="${aluno.numeroLivros}"></td>
-                    <td>*</td>
-                    <td>*</td>
+                    <td><a th:href="@{'/aluno/excluir/'+${aluno.id}}">Excluir</a></td>
+                    <td><a th:href="@{'/aluno/editar/'+${aluno.id}}">Editar</a></td>
                 </tr>
             </tbody>
         </table>
