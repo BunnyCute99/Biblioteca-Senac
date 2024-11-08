@@ -3,6 +3,7 @@ package com.biblioteca.bibliotecasenac.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -81,5 +82,21 @@ public class AlunoController {
     @PostMapping("/buscarReservar")
     public ModelAndView BuscarReservarLivros(HttpSession hSession, String buscaLivro, String tipoBusca) {
         return alunoService.BuscarReservarLivros(hSession, buscaLivro, tipoBusca);
+    }
+
+    // Editar e Deletar Alunos
+    @GetMapping("/excluir/{id}")
+    public ModelAndView DeletarAluno(@PathVariable("id") int id, HttpSession hSession) {
+        return alunoService.DeletarAluno(hSession, id);
+    }
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView PagEditarAluno(@PathVariable("id") int id, HttpSession hSession) {
+        return alunoService.PagEditar(hSession, id);
+    }
+
+    @PostMapping("/editar")
+    public ModelAndView EditarAluno(Aluno aluno, HttpSession hSession, String rsenha) {
+        return alunoService.EditarAluno(hSession, aluno, rsenha);
     }
 }

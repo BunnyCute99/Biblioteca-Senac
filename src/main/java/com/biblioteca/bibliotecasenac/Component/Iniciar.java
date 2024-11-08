@@ -35,6 +35,7 @@ public class Iniciar {
     // formato da data em dias/mes/ano, horas:minutos:segundos, dia da semana
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH:mm:ss, EEEE");
 
+    // Evento que seta o admin inicial no id 1 do banco de dados
     @EventListener(ApplicationReadyEvent.class)
     public void SetarAdmin() {
         Admim admim = new Admim();
@@ -46,6 +47,7 @@ public class Iniciar {
         admimRepository.save(admim);
     }
 
+    // Método que Cancela Reservas que passaram do dia
     @EventListener(ApplicationReadyEvent.class)
     public void CancelarReserva() {
         // teste
@@ -72,7 +74,5 @@ public class Iniciar {
         }
 
     }
-
-    // método de cancelar todas as reservas que são maiores que
 
 }
