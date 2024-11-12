@@ -7,6 +7,10 @@ Projeto visa criar uma simulção simplificada do funcionamento da Biblioteca Se
 
 O projeto utiliza como principal linguagem Java com ferramentas como Spring Boot, Thymeleaf e PostgreSQL, além de HTML, CSS.
 
+# Mapa das Páginas
+As páginas do projeto se encontrão organizadas da seguinte forma:
+<img src="/Documentos/Cópia de Sistema Biblioteca +.png" alt="Mapa">
+
 # Rodar
 
 Para rodar o projeto primeiro é necessário ter o PostgreSQL instalado em seu computador. Depois é necessário substituir a url de um banco de dados que exista no seu computador no arquivo em src/main/resources/application.properties onde diz "spring.datasource.url=(insirá a url do seu banco de dados)".
